@@ -12,10 +12,8 @@ class UserController extends Controller
 {
     public function create(CreateUserRequest $request)
     {
-        $user = new User();
-        $user->email = $request->input('email');
-        $user->name = $request->input('name');
-        $user->password = $request->input('password');
+        $data = $request->validated();
+        $user = User::create($data);
 
         if (!$user->save()) {
             return response()->json(['error' => 'Something went wrong']);
