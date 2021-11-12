@@ -29,7 +29,7 @@ class UserController extends Controller
         $loginData = $request->only('email', 'password');
 
         if (!Auth::attempt($loginData)) {
-            return response()->json(['error' => 'Error with login'], 401);
+            return response()->json(['error' => 'Error you need to login'], 401);
         }
 
         $token = Auth::user()->createToken('passport-token')->accessToken;
